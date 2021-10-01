@@ -1,6 +1,7 @@
 from flask import Blueprint, json, jsonify, request
 from flask.wrappers import Response
 from app.models import Hero, db
+from .apiauthhelper import token_required
 
 api = Blueprint('api', __name__, url_prefix='/api/')
 
@@ -20,7 +21,8 @@ def get_hero(id):
 
 
 @api.route('/heroes/<int:id>', methods=['DELETE'])
-def delete_hero(id):
+@token_required
+def delete_hero(token, id):
     try:
         hero = Hero.query.get(id)
         db.session.delete(hero)
@@ -31,6 +33,7 @@ def delete_hero(id):
 
 
 @api.route('/heroes/<int:id>', methods=['PUT'])
+@token_required
 def update_hero(id):
     response = request.get_json()
     print(response)
@@ -43,7 +46,8 @@ def update_hero(id):
 
 
 @api.route('createhero',methods=['POST'])
-def create_hero():
+@token_required
+def create_hero(token):
     r = request.get_json()
     newHero = Hero()
     newHero.from_dict(r)
