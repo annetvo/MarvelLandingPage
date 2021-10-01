@@ -1,5 +1,6 @@
 from flask import Flask
 from config import Config
+from flask_cors import CORS
 
 from .movies.routes import movies
 from .authentication.routes import auth
@@ -10,6 +11,7 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
+cors=CORS(app, origins=['*'])
 
 app.register_blueprint(movies)
 app.register_blueprint(auth)
