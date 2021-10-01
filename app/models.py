@@ -32,6 +32,19 @@ class Hero(db.Model):
             'actor':self.actor
         }
 
+    def from_dict(self, new):
+        if new.get('id'):
+            self.id = new.get('id')
+        if new.get('hero'):
+            self.hero = new.get('hero')
+        if new.get('movie') or new.get('movie') == '':
+            self.movie = new.get('movie')
+        if new.get('movie_released') or new.get('movie_released') == '':
+            self.movie_released = new.get('movie_released')
+        if new.get('actor') or new.get('actor') == '':
+            self.actor = new.get('actor')
+        return self
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.String, primary_key=True)
