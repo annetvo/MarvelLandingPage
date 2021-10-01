@@ -44,3 +44,4 @@ Here are the steps I've taken so far:
 # pip install gunicorn
 # Procfile must be in correct location with exact correct syntax
 # Follow deployment guidelines on Deploy tab of heroku project page
+# to use flask shell, make sure you type it into venv line, switching to python will not work
