@@ -28,3 +28,9 @@ class signUpForm(FlaskForm):
     submit = SubmitField()
 
 
+class updateUser(FlaskForm):
+    newusername = StringField('New Username')
+    currentpassword = StringField('Current Password', validators=[DataRequired()])
+    newpassword = StringField('New Password')
+    confirm_newpassword = StringField('Confirm New Password', validators=[EqualTo('newpassword')])
+    submit = SubmitField()

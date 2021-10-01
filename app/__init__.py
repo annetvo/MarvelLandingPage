@@ -20,6 +20,9 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 login.init_app(app)
+login.login_view = 'auth.signin'
+login.login_message = 'Please log in to see this page.'
+login.login_message_category = 'alert-info'
 
 
 from . import routes
